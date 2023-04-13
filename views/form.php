@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Form-InOut</title>
+    <title>Form</title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
