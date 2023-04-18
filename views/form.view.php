@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    if (empty($_SESSION["logado"]) || $_SESSION["logado"] == false) {
+        header("location: login.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +27,7 @@
       href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
       rel="stylesheet"
     />
-    
+
 </head>
 
 <body>
@@ -97,7 +105,7 @@
     </div>
     <section class="home-section">
         <!-- Form -->
-        <div class="container" style="margin-top: 100px; margin-bottom: 50px;">
+        <div class="container pt-5">
             <h2>Record Control</h2>
 
             <div class="row">
