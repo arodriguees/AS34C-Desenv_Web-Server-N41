@@ -1,3 +1,25 @@
+<?php 
+    $usuario = $_POST["usuario"] ?? "";
+    $senha = $_POST["senha"] ?? "";
+    $erro = false;
+
+    session_start();
+    var_dump($usuario);
+    if ($usuario == "admin" && $senha == "1234") {
+        $_SESSION["logado"] = true;
+        $_SESSION["usuario"] = "admin";
+
+        header("Location: ./form.view.php");
+    } else if(!empty($_POST)){
+        $erro = true;
+    }
+
+    if (!empty($_SESSION["logado"]) && $_SESSION["logado"]) {
+        header("Location: ./form.view.php");
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +28,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trabalho web servidor</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/style/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -19,7 +41,7 @@
                 <div class="form_wrapper">
                     <!-- <img src="money-bag.png" class="w-50 d-block m-auto mb-4" alt="" srcset=""> -->
                     <h1 class="text-center mb-4 ">Login</h2>
-                    <form method="post" action="form.php">
+                    <form method="post" action="./views/login.view.php">
                         <label for="user" class="p-2" >
                             <input id="user" name="user" type="text" placeholder="Usuário" class="input-field">
                         </label>
@@ -33,14 +55,19 @@
                                 <i class="fa-solid fa-eye-slash eyes d-none icon" onclick="hideEye(this)"></i>
                             </label>
                         </div>
-                        <p> <small>Novo aqui?</small>   <a href="cadastrar.html">Cadastre-se</a></p>
+                        <?php if ($erro) : ?>
+                            <div>
+                                Usuário ou senha inválidos!
+                            </div>
+                        <?php endif; ?>
+                        <p> <small>Novo aqui?</small>   <a href="views/cadastrar.php">Cadastre-se</a></p>
                         <button class="btn btn-primary d-inline-flex align-items-center" type="submit">Entrar</button>
                     </form>
                 </div>
 
             </div>
             <div class="col-6 d-flex justify-content-center align-items-center">
-                <img src="img-login.png" class="w-100" alt="" srcset="">
+                <img src="../assets/images/img-login.png" class="w-100" alt="" srcset="">
             </div>
 
         </div>
@@ -50,7 +77,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
         crossorigin="anonymous"></script>
-    <script src="main.js"></script>
+    <script src="../assets/js/main.js"></script>
 
 </body>
 

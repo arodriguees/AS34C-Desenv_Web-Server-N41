@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trabalho web servidor</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./assets/style/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -33,7 +33,7 @@
                                 <i class="fa-solid fa-eye-slash eyes d-none icon" onclick="hideEye(this)"></i>
                             </label>
                         </div>
-                        <p> <small>Já tem conta?</small>   <a href="login.html">Login</a></p>
+                        <p> <small>Já tem conta?</small>   <a href="login.php">Login</a></p>
                         
                         <button class="btn btn-primary d-inline-flex align-items-center" type="submit">Entrar</button>
                     </form>
