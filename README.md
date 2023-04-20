@@ -50,7 +50,7 @@ $ cd ../../opt/lampp/
 $ sudo ./manager-linux-x64.run
 ```
 
-# O servidor inciará na porta:80 - acesse <http://localhost/dashboard/>
+# O servidor inciará na porta:80 - acesse <http://localhost/web-servidor/AS34C-Desenv_Web-Server-N41/>
 
 ### 🛠 Tecnologias
 
