@@ -1,9 +1,9 @@
 # AS34C-Desenv_Web-Server-N41
 Projeto Desenvolvimento Web
 
-Allan Rogrigues Clementino, RA 2163187
-Davi Silva Buhrer, 	    RA 2374102
-Vitor Iago Huggler, 	    RA 2384329
+Allan Rogrigues Clementino,	RA 2163187
+Davi Silva Buhrer,			RA 2374102
+Vitor Iago Huggler,			RA 2384329
 
 # Fluxo de Caixa Parametrizável
 
@@ -64,10 +64,14 @@ As funções atribuidas a cada integrante do grupo foram relacionadas ao nível 
 
 - Allan Clementino: Construção das estruturas base em HTML das páginas, criação dos formulários e ajudou com a estilização (CSS);
 
-- Davi Buhrer: Post com validação no servidor.
+- Davi Buhrer: Organização do projeto usando o método MVC, criação dos controllers, models e validações dos formulários 
 
 - Vitor Huggler: Estilização das páginas principais (CSS), criação do SideMenu e ajudou com a criação e estruturação de páginas específicas em HTML;
 
 Em suma, todos os integrantes se ajudaram em tarefas determinadas, tomando a frente em certos casos para aumentar a produtividade.
 
-Quanto as dificuldades encontradas no projeto, acreditamos que o ponto mais incômodo é que para poder cadastrar um novo lançamento, é necessário ao menos um método de pagamento e uma categoria.
+Este programa em particular ainda não possui a funcionalidade de registro de novos usuários, sendo necessário utilizar o login pré-definido como "admin" e senha "1234" para acessar o sistema.
+
+Para cadastrar um novo lançamento financeiro, é necessário ter previamente cadastrado pelo menos um método de pagamento e uma categoria. Essa funcionalidade permite uma melhor organização e precisão nas informações financeiras do usuário.
+
+É possível apagar métodos de pagamentos e categorias sem que afetem os lançamentos criados com tais métodos de pagamentos e categorias.
