@@ -1,94 +1,40 @@
-<!DOCTYPE html>
-
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="sideBar.css" />
-    <!-- Boxicons CDN Link -->
-    <link
-      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <body>
-    <div class="sidebar">
-      <div class="logo-details">
-        <div class="logo_name">FluX</div>
-        <i class="bx bx-menu" id="btn"></i>
-      </div>
-      <ul class="nav-list">
-        <li>
-          <a href="#">
-            <i class="bx bx-line-chart"></i>
-            <span class="links_name">Plano de Contas</span>
-          </a>
-          <span class="tooltip">Plano de Contas</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bxs-coin-stack"></i>
-            <span class="links_name">Lançamentos</span>
-          </a>
-          <span class="tooltip">Lançamentos</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-coin-stack"></i>
-            <span class="links_name">Resumo: Lançamentos</span>
-          </a>
-          <span class="tooltip">Resumo: Lançamentos</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-columns"></i>
-            <span class="links_name">Consolidados</span>
-          </a>
-          <span class="tooltip">Resultados Consolidados</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bxs-bar-chart-alt-2"></i>
-            <span class="links_name">Gráficos</span>
-          </a>
-          <span class="tooltip">Gráficos</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bxs-report"></i>
-            <span class="links_name">Relatórios</span>
-          </a>
-          <span class="tooltip">Relatórios</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-log-in"></i>
-            <span class="links_name">Entrar</span>
-          </a>
-          <span class="tooltip">Entrar</span>
-        </li>
-        <li class="profile">
-          <div class="profile-details">
-            <div class="name_job">
-              <div class="name">ADS</div>
-              <div class="job">Desenv. Web Servidor</div>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <section class="home-section">
-      <div class="text">▄︻デᴺÓᴵˢ É ᶻᴵᴷᴬ, ᴺÓᴵˢ É ᴼ ᵀᴼᴿᴿᴼ══━一</div>
-    </section>
-    <script>
-      let sidebar = document.querySelector(".sidebar");
-      let closeBtn = document.querySelector("#btn");
-      let searchBtn = document.querySelector(".bx-search");
-
-      closeBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("open");
-        menuBtnChange(); //Abrir o sideMenu
-      });
-    </script>
-  </body>
-</html>
+<div class="sidebar">
+		<div class="logo-details">
+			<div class="logo_name"><a href="inicio.view.php"> FluX</a></div>
+			<i class="bx bx-menu" id="btn"></i>
+		</div>
+		<ul class="nav-list">
+			<li>
+				<a href="lancamento_list.view.php">
+					<i class="bx bxs-coin-stack"></i>
+					<span class="links_name">Lançamentos</span>
+				</a>
+				<span class="tooltip">Lançamentos</span>
+			</li>
+			<li>
+				<a href="pagamento_list.view.php">
+					<i class='bx bx-dollar-circle'></i>
+					<span class="links_name">Pagamentos</span>
+				</a>
+				<span class="tooltip">Métodos de Pagamentos</span>
+			</li>
+			<li>
+				<a href="categoria_list.view.php">
+					<i class='bx bx-category'></i>
+					<span class="links_name">Categorias</span>
+				</a>
+				<span class="tooltip">Categorias</span>
+			</li>
+			<li class="profile">
+				<div class="profile-details">
+					<div class="name_job">
+						<div class="name"><?= $_SESSION["usuario"] ?></div>
+						<div class="job">Desenv. Web Servidor</div>
+					</div>
+				</div>
+				<a href="logout.view.php">
+					<i class='bx bx-log-out' id="log_out"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
