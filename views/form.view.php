@@ -1,16 +1,12 @@
 <?php
-    session_start();
-
-    if (empty($_SESSION["logado"]) || $_SESSION["logado"] == false) {
-        header("location: login.php");
-    }
+    require("components/loginVerifier.php");
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Form</title>
+    <title>Início</title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -21,92 +17,20 @@
     <script src="https://kit.fontawesome.com/e48d166edc.js" crossorigin="anonymous"></script>
 
     <!-- CSS -->
-    <link href="./assets/style/main.css" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/style/sideBar.css" />
-    <link
-      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
-      rel="stylesheet"
-    />
+    <link href="../assets/style/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/style/sideBar.css" />
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
 
 </head>
 
 <body>
-    <!-- <header class="super-container">
-        <div class="header trans_300">
-
-            main Navigation 
-        </div>
-    </header> -->
-
-    <div class="sidebar">
-        <div class="logo-details">
-            <div class="logo_name">FluX</div>
-            <i class="bx bx-menu" id="btn"></i>
-        </div>
-        <ul class="nav-list" style="padding-left:0px;">
-            <li>
-                <a href="#">
-                    <i class="bx bx-line-chart"></i>
-                    <span class="links_name">Plano de Contas</span>
-                </a>
-                <span class="tooltip">Plano de Contas</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="bx bxs-coin-stack"></i>
-                    <span class="links_name">Lançamentos</span>
-                </a>
-                <span class="tooltip">Lançamentos</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="bx bx-coin-stack"></i>
-                    <span class="links_name">Resumo: Lançamentos</span>
-                </a>
-                <span class="tooltip">Resumo: Lançamentos</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="bx bx-columns"></i>
-                    <span class="links_name">Consolidados</span>
-                </a>
-                <span class="tooltip">Resultados Consolidados</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="bx bxs-bar-chart-alt-2"></i>
-                    <span class="links_name">Gráficos</span>
-                </a>
-                <span class="tooltip">Gráficos</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="bx bxs-report"></i>
-                    <span class="links_name">Relatórios</span>
-                </a>
-                <span class="tooltip">Relatórios</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="bx bx-log-in"></i>
-                    <span class="links_name">Entrar</span>
-                </a>
-                <span class="tooltip">Entrar</span>
-            </li>
-            <li class="profile">
-                <div class="profile-details">
-                    <div class="name_job">
-                        <div class="name">ADS</div>
-                        <div class="job">Desenv. Web Servidor</div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
+    <?php
+    require("components/sidebar.php");
+    ?>
     <section class="home-section">
         <!-- Form -->
         <div class="container pt-5">
-            <h2>Record Control</h2>
+            <h2>Lançamentos</h2>
 
             <div class="row">
                 <div class="col">
@@ -179,10 +103,8 @@
     let sidebar = document.querySelector(".sidebar");
     let closeBtn = document.querySelector("#btn");
     let searchBtn = document.querySelector(".bx-search");
-
     closeBtn.addEventListener("click", () => {
         sidebar.classList.toggle("open");
-        menuBtnChange(); //Abrir o sideMenu
     });
     </script>
 </body>
