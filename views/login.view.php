@@ -15,9 +15,9 @@
 </head>
 
 <body>
-    <?php require_once("../controllers/login.controller.php") ?> 
+    <?php require_once("../controllers/login.controller.php") ?>
 
-    <div class="container">
+    <div class="container p-5">
         <input type="checkbox" id="flip">
         <div class="cover">
             <div class="front">
@@ -36,9 +36,9 @@
                             </div>
                             <div class="input-box">
                                 <i class="fas fa-lock"></i>
-                                <input type="password" name="passwordLogin" placeholder="Insira sua senha">
-                                <i class="fa-solid fa-eye eyes eyes2 icon" onclick="hideEye2(this)"></i>
-                                <i class="fa-solid fa-eye-slash eyes eyes2 d-none icon" onclick="hideEye2(this)"></i>
+                                <input type="password" id="passwordLogin" name="passwordLogin" placeholder="Insira sua senha">
+                                <i class="fa-solid fa-eye eyes  icon" onclick="hideEye(this)"></i>
+                                <i class="fa-solid fa-eye-slash eyes  d-none icon" onclick="hideEye(this)"></i>
                             </div>
                             <?php if ($erro_user) : ?>
                             <div class="alert alert-danger">
@@ -64,34 +64,34 @@
                             <div class="button input-box">
                                 <input type="submit">
                             </div>
-                            <div class="text sign-up-text">Não possui uma conta? <label for="flip"><u>Registre-se
-                                        agora!</u></label>
+                            <!-- <div class="text sign-up-text">Não possui uma conta? <label for="flip"><u>Registre-se
+                                        agora!</u></label> -->
                         </div>
                 </div>
                 </form>
             </div>
-            <div class="signup-form">
-                    <div class="title">Registrar</div>
-                    <form action="#">
-                        <div class="input-boxes">
-                            <div class="input-box">
-                                <i class="fas fa-user"></i>
-                                <input type="text" placeholder="Insira seu nome">
-                            </div>
-                            <div class="input-box">
-                                <i class="fas fa-lock"></i>
-                                <input id="password" type="password" placeholder="Insira sua senha">
-                                <i class="fa-solid fa-eye eyes icon" onclick="hideEye(this)"></i>
-                                <i class="fa-solid fa-eye-slash eyes d-none icon" onclick="hideEye(this)"></i>
-                            </div>
-                            <div class="button input-box">
-                                <input type="submit" value="Criar">
-                            </div>
-                            <div class="text sign-up-text">Ja possui uma conta? <label for="flip"><u>Entre
-                                        agora!</u></label></div>
+            <!-- <div class="signup-form">
+                <div class="title">Registrar</div>
+                <form action="#">
+                    <div class="input-boxes">
+                        <div class="input-box">
+                            <i class="fas fa-user"></i>
+                            <input type="text" placeholder="Insira seu nome">
                         </div>
-                    </form>
-                </div>
+                        <div class="input-box">
+                            <i class="fas fa-lock"></i>
+                            <input id="password" type="password" placeholder="Insira sua senha">
+                            <i class="fa-solid fa-eye eyes icon" onclick="hideEye(this)"></i>
+                            <i class="fa-solid fa-eye-slash eyes d-none icon" onclick="hideEye(this)"></i>
+                        </div>
+                        <div class="button input-box">
+                            <input type="submit" value="Criar">
+                        </div>
+                        <div class="text sign-up-text">Ja possui uma conta? <label for="flip"><u>Entre
+                                    agora!</u></label></div>
+                    </div>
+                </form>
+            </div> -->
         </div>
     </div>
     </div>
@@ -101,9 +101,7 @@
     </script>
     <script>
     var eyes = document.getElementsByClassName("eyes");
-    var eyes2 = document.getElementsByClassName("eyes2");
-    var pass = document.getElementById("password");
-    var pass2 = document.getElementById("passwordLogin");
+    var pass = document.getElementById("passwordLogin");
 
     function hideEye(element) {
         eyes[0].classList.toggle("d-none");
@@ -115,15 +113,6 @@
         }
     }
 
-    function hideEye2(element) {
-        eyes2[0].classList.toggle("d-none");
-        eyes2[1].classList.toggle("d-none");
-        if (pass2.type === "password") {
-            pass2.type = "text";
-        } else {
-            pass2.type = "password";
-        }
-    }
     </script>
 
 </body>
