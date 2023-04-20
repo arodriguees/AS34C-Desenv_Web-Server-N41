@@ -39,7 +39,7 @@ $ sudo ./xampp-linux-x64-VERSAO-installer.run
 
 ### 🎲 Rodando o Back End (servidor)
 
-# Caso a janela do XAMPP esteja fechada, segir o siguinte passo.
+# Caso a janela do XAMPP esteja fechada, segir o seguinte passo.
 
 ```bash
 # Acesse a pasta de /opt/lampp no terminal/cmd
