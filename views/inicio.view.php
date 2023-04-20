@@ -31,10 +31,10 @@
     <section class="home-section">
         <div class="container">
             <div class="row">
-                <div class="col-12">
+                <!-- <div class="col-12">
                     <img src="../assets/images/logo.png" alt="logo">
-                </div>
-                <div class="col-12 mb-4">
+                </div> -->
+                <div class="col-12 my-4">
                     <h2>Bem vindo, <b class="text-decoration-underline"><?=$_SESSION["usuario"]?>!</b></h2>
                 </div>
             </div>
@@ -42,14 +42,7 @@
 
                 <h4 class="mb-4">Navegação rápida</h4>
                 <div class="row">
-                    <div class="col-4">
-                        <a href="lancamento_list.view.php" class="h-100">
-                        <div class="dash_card text-center center">
-                                <i class="bx bxs-coin-stack"></i>
-                                <span class="links_name">Lançamentos</span>
-                            </div>
-                        </a>
-                    </div>
+                    
                     <div class="col-4">
                         <a href="pagamento_list.view.php" class="h-100">
                         <div class="dash_card text-center center">
@@ -63,6 +56,14 @@
                         <div class="dash_card text-center center">
                                 <i class="bx bxs-coin-stack"></i>
                                 <span class="links_name">Categorias</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a href="lancamento_list.view.php" class="h-100">
+                        <div class="dash_card text-center center">
+                                <i class="bx bxs-coin-stack"></i>
+                                <span class="links_name">Lançamentos</span>
                             </div>
                         </a>
                     </div>
