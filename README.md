@@ -69,7 +69,7 @@ Após o download e configuração, precisamos criar um Server e executar os scri
 Executar um por vez.
 
 ```SQL
-CREATE SCHEMA IF NOT EXISTS `FLUXO`; -- DEFAULT CHARACTER SET utf8;
+CREATE SCHEMA IF NOT EXISTS `FLUXO` DEFAULT CHARACTER SET utf8;
 
 
 -- -----------------------------------------------------
