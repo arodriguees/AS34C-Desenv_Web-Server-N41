@@ -69,81 +69,99 @@ Após o download e configuração, precisamos criar um Server e executar os scri
 Executar um por vez.
 
 ```SQL
-CREATE SCHEMA IF NOT EXISTS `FLUXO` DEFAULT CHARACTER SET utf8;
+-- --------------------------------------------------------
+-- Servidor:                     127.0.0.1
+-- Versão do servidor:           5.7.33 - MySQL Community Server (GPL)
+-- OS do Servidor:               Win64
+-- HeidiSQL Versão:              11.2.0.6213
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- -----------------------------------------------------
--- Table `FLUXO`.`CATEGORIA`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `FLUXO`.`Categoria` (
-  ID INT NOT NULL AUTO_INCREMENT,
-  Nome VARCHAR(45) NOT NULL,
-  Descricao VARCHAR(100) NOT NULL,
-  PRIMARY KEY (ID))
-ENGINE = InnoDB;
+-- Copiando estrutura do banco de dados para fluxo
+CREATE DATABASE IF NOT EXISTS `fluxo` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE `fluxo`;
 
--- -----------------------------------------------------
--- Inserts Table `FLUXO`.`CATEGORIA`
--- -----------------------------------------------------
-INSERT INTO FLUXO.Categoria (nome, descricao)
-VALUES  ('categoria 1', 'Descricao da categoria 1'),
-	('categoria 2', 'Descricao da categoria 2');
+-- Copiando estrutura para tabela fluxo.categorias
+CREATE TABLE IF NOT EXISTS `categorias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) NOT NULL,
+  `descricao` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
 
--- -----------------------------------------------------
--- Table `FLUXO`.`MetodoPagamento`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `FLUXO`.`MetodoPagamento` (
-  ID INT NOT NULL AUTO_INCREMENT,
-  Nome VARCHAR(45) NOT NULL,
-  PRIMARY KEY (ID))
-ENGINE = InnoDB;
+-- Copiando dados para a tabela fluxo.categorias: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
+INSERT INTO `categorias` (`id`, `nome`, `descricao`) VALUES
+	(1, 'categoria 1', 'descricao'),
+	(2, 'categoria 2', 'descricao');
+/*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 
--- -----------------------------------------------------
--- Inserts Table `FLUXO`.`MetodoPagamento`
--- -----------------------------------------------------
-INSERT INTO FLUXO.MetodoPagamento (nome)
-VALUES ('Boleto'), ('Crédito'), ('Débito'),	('Pix');
+-- Copiando estrutura para tabela fluxo.lancamentos
+CREATE TABLE IF NOT EXISTS `lancamentos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `data_lancamento` varchar(50) NOT NULL,
+  `valor` varchar(50) NOT NULL DEFAULT '0',
+  `descricao` varchar(100) NOT NULL,
+  `tipo` varchar(45) NOT NULL,
+  `categoria_id` int(11) NOT NULL,
+  `pagamento_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `pagamento` (`pagamento_id`) USING BTREE,
+  KEY `categoria_lancamento` (`categoria_id`) USING BTREE,
+  CONSTRAINT `lancamentos_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`),
+  CONSTRAINT `lancamentos_ibfk_2` FOREIGN KEY (`pagamento_id`) REFERENCES `pagamentos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
--- -----------------------------------------------------
--- Table `FLUXO`.`Lancamento`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `FLUXO`.`Lancamento` (
-  ID INT NOT NULL AUTO_INCREMENT,
-  Data_Lancamento VARCHAR(12) NOT NULL,
-  Valor DOUBLE NOT NULL,
-  Descricao VARCHAR(100) NOT NULL,
-  Tipo VARCHAR(45) NOT NULL,
-  PRIMARY KEY (ID)
-);
+-- Copiando dados para a tabela fluxo.lancamentos: ~3 rows (aproximadamente)
+/*!40000 ALTER TABLE `lancamentos` DISABLE KEYS */;
+INSERT INTO `lancamentos` (`id`, `data_lancamento`, `valor`, `descricao`, `tipo`, `categoria_id`, `pagamento_id`) VALUES
+	(1, '2022-03-22', '2.39', 'Descrição teste', 'Rendimento', 2, 1),
+	(2, '2023-11-30', '0.05', 'Descrição teste', 'Despesa', 1, 1),
+	(3, '2002-02-20', '1937.74', 'Descrição teste', 'Despesa', 2, 2);
+/*!40000 ALTER TABLE `lancamentos` ENABLE KEYS */;
 
--- -----------------------------------------------------
--- Table `FLUXO`.`Lancamento`
--- -----------------------------------------------------
-ALTER TABLE FLUXO.Lancamento ADD Categoria_Lancamento INT NOT NULL;
+-- Copiando estrutura para tabela fluxo.pagamentos
+CREATE TABLE IF NOT EXISTS `pagamentos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
-ALTER TABLE FLUXO.Lancamento ADD Pagamento INT NOT NULL;
+-- Copiando dados para a tabela fluxo.pagamentos: ~4 rows (aproximadamente)
+/*!40000 ALTER TABLE `pagamentos` DISABLE KEYS */;
+INSERT INTO `pagamentos` (`id`, `nome`) VALUES
+	(1, 'Boleto'),
+	(2, 'Credito'),
+	(3, 'Debito'),
+	(4, 'Pix');
+/*!40000 ALTER TABLE `pagamentos` ENABLE KEYS */;
 
-ALTER TABLE FLUXO.Lancamento 
-ADD FOREIGN KEY (Categoria_Lancamento) 
-REFERENCES FLUXO.Categoria(ID);
+-- Copiando estrutura para tabela fluxo.usuarios
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
-ALTER TABLE FLUXO.Lancamento 
-ADD FOREIGN KEY (Pagamento) 
-REFERENCES FLUXO.MetodoPagamento(ID);
+-- Copiando dados para a tabela fluxo.usuarios: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` (`id`, `name`, `password`) VALUES
+	(1, 'admin', 'teste'),
+	(2, 'funcionario', '1234');
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
--- -----------------------------------------------------
--- Insert Table `FLUXO`.`Lancamento`
--- -----------------------------------------------------
-INSERT INTO FLUXO.Lancamento (Data_Lancamento, Valor, Descricao, Tipo, Categoria_Lancamento, Pagamento)
-VALUES	('07/05/2023', 2.39, 'Pra inteirar no maço de eight', 'Aii zé da mangaaa', 2, 1),
-	('09/05/2023', 0.05, 'Depois do eight fiquei pobre...', 'Aaaaai calica', 1, 1);
-
-
--- Join para exibir o nome das colunas, e não o ID --
-SELECT lan.*, cat.nome Categoria, pag.nome Metodo_Pagamento FROM FLUXO.Lancamento lan
-JOIN FLUXO.Categoria cat ON cat.ID = lan.categoria_lancamento
-JOIN FLUXO.MetodoPagamento pag ON pag.ID = lan.pagamento 
-ORDER BY lan.Data_Lancamento;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
 
 ```
 
