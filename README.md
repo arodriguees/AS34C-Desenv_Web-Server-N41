@@ -58,15 +58,104 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 - [PHP](https://www.php.net/)
 
+### Instalando o MySQL Workbench
+
+O download pode ser feito no site [MYSQL Workbench](https://dev.mysql.com/downloads/workbench/), seguindo o passa-a-passo de instalação [Installation](https://dev.mysql.com/doc/workbench/en/wb-requirements.html).
+
+Após o download e configuração, precisamos criar um Server e executar os scripts base para o projeto.
+
+### 🎲 Criando o Banco de Dados (MySQL Workbench)
+
+Executar um por vez.
+
+```SQL
+CREATE SCHEMA IF NOT EXISTS `FLUXO`; -- DEFAULT CHARACTER SET utf8;
+
+
+-- -----------------------------------------------------
+-- Table `FLUXO`.`CATEGORIA`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `FLUXO`.`Categoria` (
+  ID INT NOT NULL AUTO_INCREMENT,
+  Nome VARCHAR(45) NOT NULL,
+  Descricao VARCHAR(100) NOT NULL,
+  PRIMARY KEY (ID))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Inserts Table `FLUXO`.`CATEGORIA`
+-- -----------------------------------------------------
+INSERT INTO FLUXO.Categoria (nome, descricao)
+VALUES  ('categoria 1', 'Descricao da categoria 1'),
+	('categoria 2', 'Descricao da categoria 2');
+
+-- -----------------------------------------------------
+-- Table `FLUXO`.`MetodoPagamento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `FLUXO`.`MetodoPagamento` (
+  ID INT NOT NULL AUTO_INCREMENT,
+  Nome VARCHAR(45) NOT NULL,
+  PRIMARY KEY (ID))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Inserts Table `FLUXO`.`MetodoPagamento`
+-- -----------------------------------------------------
+INSERT INTO FLUXO.MetodoPagamento (nome)
+VALUES ('Boleto'), ('Crédito'), ('Débito'),	('Pix');
+
+-- -----------------------------------------------------
+-- Table `FLUXO`.`Lancamento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `FLUXO`.`Lancamento` (
+  ID INT NOT NULL AUTO_INCREMENT,
+  Data_Lancamento VARCHAR(12) NOT NULL,
+  Valor DOUBLE NOT NULL,
+  Descricao VARCHAR(100) NOT NULL,
+  Tipo VARCHAR(45) NOT NULL,
+  PRIMARY KEY (ID)
+);
+
+-- -----------------------------------------------------
+-- Table `FLUXO`.`Lancamento`
+-- -----------------------------------------------------
+ALTER TABLE FLUXO.Lancamento ADD Categoria_Lancamento INT NOT NULL;
+
+ALTER TABLE FLUXO.Lancamento ADD Pagamento INT NOT NULL;
+
+ALTER TABLE FLUXO.Lancamento 
+ADD FOREIGN KEY (Categoria_Lancamento) 
+REFERENCES FLUXO.Categoria(ID);
+
+ALTER TABLE FLUXO.Lancamento 
+ADD FOREIGN KEY (Pagamento) 
+REFERENCES FLUXO.MetodoPagamento(ID);
+
+-- -----------------------------------------------------
+-- Insert Table `FLUXO`.`Lancamento`
+-- -----------------------------------------------------
+INSERT INTO FLUXO.Lancamento (Data_Lancamento, Valor, Descricao, Tipo, Categoria_Lancamento, Pagamento)
+VALUES	('07/05/2023', 2.39, 'Pra inteirar no maço de eight', 'Aii zé da mangaaa', 2, 1),
+	('09/05/2023', 0.05, 'Depois do eight fiquei pobre...', 'Aaaaai calica', 1, 1);
+
+
+-- Join para exibir o nome das colunas, e não o ID --
+SELECT lan.*, cat.nome Categoria, pag.nome Metodo_Pagamento FROM FLUXO.Lancamento lan
+JOIN FLUXO.Categoria cat ON cat.ID = lan.categoria_lancamento
+JOIN FLUXO.MetodoPagamento pag ON pag.ID = lan.pagamento 
+ORDER BY lan.Data_Lancamento;
+
+```
+
 ----------------------------------------------------------------------------------------------------------
 
 As funções atribuidas a cada integrante do grupo foram relacionadas ao nível de conhecimento e/ou praticidade em cada uma das aplicações. Segue listado abaixo as funções de cada membro:
 
-- Allan Clementino: Construção das estruturas base em HTML das páginas, criação dos formulários e ajudou com a estilização (CSS);
+- Allan Clementino: Documentação de configuração e instalação do software: este documento deve mostrar os requisitos para instalação, quais arquivos de configuração devem ser atualizados, como o banco de dados deve ser criado, etc;
 
-- Davi Buhrer: Organização do projeto usando o método MVC, criação dos controllers, models e validações dos formulários 
+- Davi Buhrer: Uso de um sistema de rotas (URL transparente) e o uso do padrão MVC (melhoria do Trabalho 1 para separar a lógica (validações, controle, etc.), a estrutura de dados (entidades, consultas, etc.) e o HTML (apenas apresentação do conteúdo)). 
 
-- Vitor Huggler: Estilização das páginas principais (CSS), criação do SideMenu e ajudou com a criação e estruturação de páginas específicas em HTML;
+- Vitor Huggler: Banco de Dados MySQL / MariaDB / Postgres / Outro via PDO;
 
 Em suma, todos os integrantes se ajudaram em tarefas determinadas, tomando a frente em certos casos para aumentar a produtividade.
 
